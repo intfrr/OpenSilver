@@ -786,7 +786,7 @@ namespace CSHTML5.Internal
                 var t1 = Performance.now();
 #endif
 
-                PropertyMetadata propertyMetadata = property.GetTypeMetaData(dependencyObject.GetType());
+                PropertyMetadata propertyMetadata = property.GetMetadata(dependencyObject.GetType());
                 //#if CSHTML5BLAZOR && DEBUG
                 //                    string prettyPrintProperty = property.Name + (property != null ? "(" + property.GetHashCode().ToString() + ")" : "");
                 //                    Console.WriteLine("OPENSILVER DEBUG: VisualTreeManager: RenderElementsAndRaiseChangedEventOnAllDependencyProperties:"
