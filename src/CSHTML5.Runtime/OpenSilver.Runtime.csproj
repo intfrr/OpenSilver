@@ -52,7 +52,9 @@
 		<PackageReference Include="System.Text.Json" Version="4.7.0" />
 	</ItemGroup>
 	<ItemGroup>
-		<Compile Include="Core\Main\INTERNAL_NamedObject.cs" />
+		<Compile Include="CSHTML5\Internal\NamedObject.cs" />
+		<Compile Include="CSHTML5\Utility\FrugalMap.cs" />
+		<Compile Include="CSHTML5\Utility\ItemList.cs" />
 		<Compile Include="Microsoft.Expression.Interactivity.Core\WORKINPROGRESS\ChangePropertyAction.cs" />
 		<Compile Include="Microsoft.Expression.Interactivity.Core\WORKINPROGRESS\ComparisonConditionType.cs" />
 		<Compile Include="Microsoft.Expression.Interactivity.Core\WORKINPROGRESS\ControlStoryboardAction.cs" />
@@ -143,6 +145,9 @@
 		<Compile Include="Windows.UI.Xaml.Media\WORKINPROGRESS\TextOptions.cs" />
 		<Compile Include="Windows.UI.Xaml.Media\WORKINPROGRESS\TextRenderingMode.cs" />
 		<Compile Include="Windows.UI.Xaml.Media\WORKINPROGRESS\VisualTreeHelper.cs" />
+		<Compile Include="Windows.UI.Xaml\DefaultValueFactory.cs" />
+		<Compile Include="Windows.UI.Xaml\DependencyObjectType.cs" />
+		<Compile Include="Windows.UI.Xaml\ValidateValueCallback.cs" />
 		<Compile Include="Windows.UI.Xaml\WORKINPROGRESS\ApplicationLifetimeObjectsCollection.cs" />
 		<Compile Include="Windows.UI.Xaml\WORKINPROGRESS\DataTemplate.cs" />
 		<Compile Include="Windows.UI.Xaml\WORKINPROGRESS\DragEventHandler.cs" />
