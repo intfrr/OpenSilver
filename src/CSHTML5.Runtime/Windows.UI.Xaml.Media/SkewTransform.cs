@@ -115,7 +115,9 @@ namespace Windows.UI.Xaml.Media
 
         private void ApplyCSSChanges(SkewTransform skewTransform, double angleX, double angleY)
         {
-            CSSEquivalent angleXcssEquivalent = AngleXProperty.GetMetadata(typeof(SkewTransform)).GetCSSEquivalent(skewTransform);
+            DependencyObjectType dType = DependencyObjectType.FromSystemTypeInternal(typeof(SkewTransform));
+
+            CSSEquivalent angleXcssEquivalent = AngleXProperty.GetMetadata(dType).GetCSSEquivalent(skewTransform);
             object domElementX = angleXcssEquivalent.DomElement;
             if (angleX != _appliedCssAngleX || (_domElementToWhichTheCssAngleXWasApplied != null && domElementX != _domElementToWhichTheCssAngleXWasApplied)) // Optimization to avoid setting the transform if the value is (0,0) or if it is the same as the last time.
             {
@@ -124,7 +126,7 @@ namespace Windows.UI.Xaml.Media
                 _domElementToWhichTheCssAngleXWasApplied = domElementX;
             }
 
-            CSSEquivalent angleYcssEquivalent = AngleYProperty.GetMetadata(typeof(SkewTransform)).GetCSSEquivalent(skewTransform);
+            CSSEquivalent angleYcssEquivalent = AngleYProperty.GetMetadata(dType).GetCSSEquivalent(skewTransform);
             object domElementY = angleYcssEquivalent.DomElement;
             if (angleY != _appliedCssAngleY || (_domElementToWhichTheCssAngleYWasApplied != null && domElementY != _domElementToWhichTheCssAngleYWasApplied)) // Optimization to avoid setting the transform if the value is (0,0) or if it is the same as the last time.
             {

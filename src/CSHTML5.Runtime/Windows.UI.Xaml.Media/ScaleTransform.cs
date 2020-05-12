@@ -114,7 +114,9 @@ namespace Windows.UI.Xaml.Media
 
         private void ApplyCSSChanges(ScaleTransform scaleTransform, double scaleX, double scaleY)
         {
-            CSSEquivalent scaleXcssEquivalent = ScaleXProperty.GetMetadata(typeof(ScaleTransform)).GetCSSEquivalent(scaleTransform);
+            DependencyObjectType dType = DependencyObjectType.FromSystemTypeInternal(typeof(ScaleTransform));
+            
+            CSSEquivalent scaleXcssEquivalent = ScaleXProperty.GetMetadata(dType).GetCSSEquivalent(scaleTransform);
             object domElementX = scaleXcssEquivalent.DomElement;
             if (scaleX != _appliedCssScaleX || (_domElementToWhichTheCssScaleXWasApplied != null && domElementX != _domElementToWhichTheCssScaleXWasApplied)) // Optimization to avoid setting the transform if the value is (0,0) or if it is the same as the last time.
             {
@@ -123,7 +125,7 @@ namespace Windows.UI.Xaml.Media
                 _domElementToWhichTheCssScaleXWasApplied = domElementX;
             }
 
-            CSSEquivalent scaleYcssEquivalent = ScaleYProperty.GetMetadata(typeof(ScaleTransform)).GetCSSEquivalent(scaleTransform);
+            CSSEquivalent scaleYcssEquivalent = ScaleYProperty.GetMetadata(dType).GetCSSEquivalent(scaleTransform);
             object domElementY = scaleYcssEquivalent.DomElement;
             if (scaleY != _appliedCssScaleY || (_domElementToWhichTheCssScaleYWasApplied != null && domElementY != _domElementToWhichTheCssScaleYWasApplied)) // Optimization to avoid setting the transform if the value is (0,0) or if it is the same as the last time.
             {

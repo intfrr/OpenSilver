@@ -124,7 +124,9 @@ namespace Windows.UI.Xaml.Media
 
         private void ApplyCSSChanges(TranslateTransform translateTransform, double x, double y)
         {
-            CSSEquivalent translateXcssEquivalent = XProperty.GetMetadata(typeof(TranslateTransform)).GetCSSEquivalent(translateTransform);
+            DependencyObjectType dType = DependencyObjectType.FromSystemTypeInternal(typeof(TranslateTransform));
+
+            CSSEquivalent translateXcssEquivalent = XProperty.GetMetadata(dType).GetCSSEquivalent(translateTransform);
             object domElementX = translateXcssEquivalent.DomElement;
             if (x != _appliedCssX || (_domElementToWhichTheCssXWasApplied != null && domElementX != _domElementToWhichTheCssXWasApplied)) // Optimization to avoid setting the transform if the value is (0,0) or if it is the same as the last time.
             {
@@ -133,7 +135,7 @@ namespace Windows.UI.Xaml.Media
                 _domElementToWhichTheCssXWasApplied = domElementX;
             }
 
-            CSSEquivalent translateYcssEquivalent = YProperty.GetMetadata(typeof(TranslateTransform)).GetCSSEquivalent(translateTransform);
+            CSSEquivalent translateYcssEquivalent = YProperty.GetMetadata(dType).GetCSSEquivalent(translateTransform);
             object domElementY = translateYcssEquivalent.DomElement;
             if (y != _appliedCssY || (_domElementToWhichTheCssYWasApplied != null && domElementY != _domElementToWhichTheCssYWasApplied)) // Optimization to avoid setting the transform if the value is (0,0) or if it is the same as the last time.
             {
