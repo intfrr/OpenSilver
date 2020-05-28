@@ -144,9 +144,15 @@ namespace Windows.UI.Xaml
             get { return (bool)GetValue(ClipToBoundsProperty); }
             set { SetValue(ClipToBoundsProperty, value); }
         }
+
         public static readonly DependencyProperty ClipToBoundsProperty =
-            DependencyProperty.Register("ClipToBounds", typeof(bool), typeof(UIElement), new PropertyMetadata(false) { MethodToUpdateDom = ClipToBounds_MethodToUpdateDom,
-            CallPropertyChangedWhenLoadedIntoVisualTree = WhenToCallPropertyChangedEnum.IfPropertyIsSet });
+            DependencyProperty.Register("ClipToBounds", 
+                                        typeof(bool), 
+                                        typeof(UIElement), 
+                                        new PropertyMetadata(false) 
+                                        { 
+                                            MethodToUpdateDom = ClipToBounds_MethodToUpdateDom, 
+                                        });
 
         private static void ClipToBounds_MethodToUpdateDom(DependencyObject d, object newValue)
         {
@@ -210,16 +216,25 @@ namespace Windows.UI.Xaml
 
         #region Effect
 
-        public Effect Effect //todo: we may add the support for multiple effects on the same UIElement since it is possible in html (but not in wpf). If we try to, it will require some changes in the Effects already implemented and some work to make it work properly in the simulator.
+        // todo: we may add the support for multiple effects on the same 
+        // UIElement since it is possible in html (but not in wpf). If we 
+        // try to, it will require some changes in the Effects already 
+        // implemented and some work to make it work properly in the 
+        // simulator.
+        public Effect Effect
         {
             get { return (Effect)GetValue(EffectProperty); }
             set { SetValue(EffectProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for Effect.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty EffectProperty =
-            DependencyProperty.Register("Effect", typeof(Effect), typeof(UIElement), new PropertyMetadata(null, Effect_Changed)
-            { CallPropertyChangedWhenLoadedIntoVisualTree = WhenToCallPropertyChangedEnum.IfPropertyIsSet });
+            DependencyProperty.Register("Effect",
+                                        typeof(Effect),
+                                        typeof(UIElement),
+                                        new PropertyMetadata(null, Effect_Changed)
+                                        {
+                                            CallPropertyChangedWhenLoadedIntoVisualTree = WhenToCallPropertyChangedEnum.IfPropertyIsSet
+                                        });
 
         private static void Effect_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -249,12 +264,18 @@ namespace Windows.UI.Xaml
             get { return (Transform)GetValue(RenderTransformProperty); }
             set { SetValue(RenderTransformProperty, value); }
         }
+
         /// <summary>
         /// Identifies the RenderTransform dependency property.
         /// </summary>
         public static readonly DependencyProperty RenderTransformProperty =
-            DependencyProperty.Register("RenderTransform", typeof(Transform), typeof(UIElement), new PropertyMetadata(null, RenderTransform_Changed)
-            { CallPropertyChangedWhenLoadedIntoVisualTree = WhenToCallPropertyChangedEnum.IfPropertyIsSet });
+            DependencyProperty.Register("RenderTransform", 
+                                        typeof(Transform), 
+                                        typeof(UIElement), 
+                                        new PropertyMetadata(null, RenderTransform_Changed)
+                                        { 
+                                            CallPropertyChangedWhenLoadedIntoVisualTree = WhenToCallPropertyChangedEnum.IfPropertyIsSet 
+                                        });
 
         static void RenderTransform_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -312,10 +333,14 @@ namespace Windows.UI.Xaml
             set { SetValue(RenderTransformOriginProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for RenderTransformOrigin.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty RenderTransformOriginProperty =
-            DependencyProperty.Register("RenderTransformOrigin", typeof(Point), typeof(UIElement), new PropertyMetadata(new Point(0d, 0d), RenderTransformOrigin_Changed)
-            { CallPropertyChangedWhenLoadedIntoVisualTree = WhenToCallPropertyChangedEnum.IfPropertyIsSet });
+            DependencyProperty.Register("RenderTransformOrigin", 
+                                        typeof(Point), 
+                                        typeof(UIElement), 
+                                        new PropertyMetadata(new Point(0d, 0d), RenderTransformOrigin_Changed)
+                                        { 
+                                            CallPropertyChangedWhenLoadedIntoVisualTree = WhenToCallPropertyChangedEnum.IfPropertyIsSet 
+                                        });
 
         private static void RenderTransformOrigin_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -334,8 +359,6 @@ namespace Windows.UI.Xaml
                 ApplyRenderTransformOrigin(uiElement, newValue);
             }
         }
-
-        #endregion
 
         static void ApplyRenderTransformOrigin(UIElement uiElement, Point newValue)
         {
@@ -365,6 +388,7 @@ namespace Windows.UI.Xaml
             uiElement.INTERNAL_RenderTransformOriginHasBeenApplied = true;
         }
 
+        #endregion
 
         #region UseLayoutRounding
 
@@ -383,14 +407,19 @@ namespace Windows.UI.Xaml
         /// Identifies the UseLayoutRounding dependency property.
         /// </summary>
         public static readonly DependencyProperty UseLayoutRoundingProperty =
-            DependencyProperty.Register("UseLayoutRounding", typeof(bool), typeof(UIElement), new PropertyMetadata(false)
-            { CallPropertyChangedWhenLoadedIntoVisualTree = WhenToCallPropertyChangedEnum.IfPropertyIsSet });
-        //------
-        // NOTE: The "UseLayoutRounding" is currently not supported, but we provide it anyway because it's a pain for end-users to remove the option in all their XAML elements and the benefit of not including it is not significant.
-        //------
+            DependencyProperty.Register("UseLayoutRounding", 
+                                        typeof(bool), 
+                                        typeof(UIElement), 
+                                        new PropertyMetadata(false));
+
+        //-------------------------------------------------------------------
+        // NOTE: The "UseLayoutRounding" is currently not supported, but we 
+        // provide it anyway because it's a pain for end-users to remove the 
+        // option in all their XAML elements and the benefit of not including 
+        // it is not significant.
+        //-------------------------------------------------------------------
 
         #endregion
-
 
         #region Visibility
 
@@ -403,14 +432,21 @@ namespace Windows.UI.Xaml
             get { return (Visibility)GetValue(VisibilityProperty); }
             set { SetValue(VisibilityProperty, value); }
         }
+
         /// <summary>
         /// Identifies the Visibility dependency property.
         /// </summary>
         public static readonly DependencyProperty VisibilityProperty =
-            DependencyProperty.Register("Visibility", typeof(Visibility), typeof(UIElement), new PropertyMetadata(Visibility.Visible, Visibility_Changed)
-            { CallPropertyChangedWhenLoadedIntoVisualTree = WhenToCallPropertyChangedEnum.IfPropertyIsSet });
+            DependencyProperty.Register("Visibility", 
+                                        typeof(Visibility), 
+                                        typeof(UIElement), 
+                                        new PropertyMetadata(Visibility.Visible, Visibility_Changed)
+                                        { 
+                                            CallPropertyChangedWhenLoadedIntoVisualTree = WhenToCallPropertyChangedEnum.IfPropertyIsSet 
+                                        });
 
         string _previousValueOfDisplayCssProperty = "block";
+
         static void Visibility_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var uiElement = (UIElement)d;
@@ -474,7 +510,6 @@ namespace Windows.UI.Xaml
 
         #endregion
 
-
         #region Opacity
 
         /// <summary>
@@ -487,6 +522,7 @@ namespace Windows.UI.Xaml
             get { return (double)GetValue(OpacityProperty); }
             set { SetValue(OpacityProperty, value); }
         }
+
         /// <summary>
         /// Identifies the Opacity dependency property.
         /// </summary>
@@ -502,9 +538,7 @@ namespace Windows.UI.Xaml
                         ApplyAlsoWhenThereIsAControlTemplate = true,
                     };
                 },
-                CallPropertyChangedWhenLoadedIntoVisualTree = WhenToCallPropertyChangedEnum.Never
-            }
-            );
+            });
 
         #endregion
 
@@ -522,13 +556,14 @@ namespace Windows.UI.Xaml
         /// <summary>
         /// Identifies the IsHitTestVisible property.
         /// </summary>
-        public static readonly DependencyProperty IsHitTestVisibleProperty = DependencyProperty.Register("IsHitTestVisible", 
-                                                                                                         typeof(bool), 
-                                                                                                         typeof(UIElement), 
-                                                                                                         new PropertyMetadata(true, OnIsHitTestVisiblePropertyChanged, CoerceIsHitTestVisibleProperty)
-                                                                                                         {
-                                                                                                             MethodToUpdateDom = IsHitTestVisible_MethodToUpdateDom,
-                                                                                                         });
+        public static readonly DependencyProperty IsHitTestVisibleProperty =
+            DependencyProperty.Register("IsHitTestVisible", 
+                                        typeof(bool), 
+                                        typeof(UIElement), 
+                                        new PropertyMetadata(true, OnIsHitTestVisiblePropertyChanged, CoerceIsHitTestVisibleProperty)
+                                        {
+                                            MethodToUpdateDom = IsHitTestVisible_MethodToUpdateDom,
+                                        });
 
         private static void OnIsHitTestVisiblePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -662,8 +697,10 @@ namespace Windows.UI.Xaml
         /// Identifies the AllowDrop dependency property.
         /// </summary>
         public static readonly DependencyProperty AllowDropProperty =
-            DependencyProperty.Register("AllowDrop", typeof(bool), typeof(UIElement), new PropertyMetadata(false)
-            { CallPropertyChangedWhenLoadedIntoVisualTree = WhenToCallPropertyChangedEnum.IfPropertyIsSet });
+            DependencyProperty.Register("AllowDrop", 
+                                        typeof(bool), 
+                                        typeof(UIElement), 
+                                        new PropertyMetadata(false));
 
         #endregion
 
@@ -1046,9 +1083,15 @@ namespace Windows.UI.Xaml
         protected internal override void INTERNAL_OnDetachedFromVisualTree()
         {
             base.INTERNAL_OnDetachedFromVisualTree();
-            // We make sure an element that is detached cannot have the cursor captured, which causes bugs.
-            // For example in a DataGrid, if we had a column with two focusable elements in its edition mode, clicking one then the other one would leave the edition mode and detach the elements
-            // but the second element that was clicked would still have captured the pointer events, preventing the user to click on anything until the capture is released (if it does ever happen).
+
+            // We make sure an element that is detached cannot have the cursor 
+            // captured, which causes bugs.
+            // For example in a DataGrid, if we had a column with two focusable 
+            // elements in its edition mode, clicking one then the other one 
+            // would leave the edition mode and detach the elements but the second 
+            // element that was clicked would still have captured the pointer 
+            // events, preventing the user to click on anything until the capture 
+            // is released (if it does ever happen).
             if (Pointer.INTERNAL_captured == this)
             {
 #if MIGRATION
